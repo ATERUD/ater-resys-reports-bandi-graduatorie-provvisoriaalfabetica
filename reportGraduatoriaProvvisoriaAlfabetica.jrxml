@@ -5,6 +5,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="172"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AterUDBandi.xml"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
 	<style name="Default" isDefault="true" fontName="ATER Fonts - Arimo"/>
 	<style name="MultiLineBackGround" style="Default">
 		<conditionalStyle>
@@ -19,16 +20,26 @@
 		<defaultValueExpression><![CDATA["minilogo.png"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE1" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE DI AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE - FVG"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE2" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["99999 FVG, Via xxxxx n. 00 - Tel. 04xx 999999 - Fax 04xx 999999"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE3" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["e-mail: info@aterfvg.it - web: www.aterfvg.it"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="IDBANDO" class="java.lang.Double"/>
-	<parameter name="IDGRADUATORIA" class="java.lang.Double"/>
+	<parameter name="IDBANDO" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[DOUBLE_VALUE("2.0")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IDGRADUATORIA" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[DOUBLE_VALUE("1.0")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="INTESTAZIONE4" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Luogo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FOOTERSTAMPA" class="java.lang.String">
+		<defaultValueExpression><![CDATA["ATER FVG"]]></defaultValueExpression>
+	</parameter>
 	<queryString language="hql">
 		<![CDATA[Select grad.id.idBando as idBando,
 grad.id.idGraduatoria as idGraduatoria,
@@ -203,7 +214,7 @@ Order by anagrafica.cognomeRagione, anagrafica.nominativo, grad.punteggioTotale 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[( $F{dataPubblicazioneGrad} == null ? "" : " Udine,  " + DateFormat.getDateInstance(DateFormat.LONG).format($F{dataPubblicazioneGrad}) )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[( $F{dataPubblicazioneGrad} == null ? "" : $P{INTESTAZIONE4} + ",  " + DateFormat.getDateInstance(DateFormat.LONG).format($F{dataPubblicazioneGrad}) )]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="1" y="385" width="554" height="265" uuid="c7cedada-a971-4d64-8192-fcd99aef0d16"/>
@@ -389,16 +400,17 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 	<pageFooter>
 		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="1" y="0" width="554" height="15" uuid="8e4f1f6d-0577-4c41-9c4d-9a55e8a4d31b"/>
+				<reportElement x="430" y="0" width="125" height="15" uuid="8e4f1f6d-0577-4c41-9c4d-9a55e8a4d31b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Pagina "+$V{PagGrad}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="1" y="0" width="100" height="18" uuid="9aa30f19-3c14-4224-a78b-c61d7ffbce46"/>
-				<text><![CDATA[ATER Udine]]></text>
-			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="18" uuid="452f54d9-0e06-4fd9-a38d-e8a616b18dba"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{FOOTERSTAMPA}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 </jasperReport>
