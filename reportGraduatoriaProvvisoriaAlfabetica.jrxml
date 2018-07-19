@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final utlizzo versione della libreria JasperReports6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAlloggi" language="groovy" pageWidth="595" pageHeight="841" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2cfa5ad0-b19b-423e-81bc-f03caca441d1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAlloggi" language="groovy" pageWidth="595" pageHeight="841" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="ReportVersion" uuid="2cfa5ad0-b19b-423e-81bc-f03caca441d1">
 	<property name="ireport.zoom" value="1.3660269107301415"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="172"/>
@@ -20,7 +20,7 @@
 		<defaultValueExpression><![CDATA["minilogo.png"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE1" class="java.lang.String">
-		<defaultValueExpression><![CDATA["AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE DI AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE - FVG"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE ...... ....... ....... ......."]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE2" class="java.lang.String">
 		<defaultValueExpression><![CDATA["99999 FVG, Via xxxxx n. 00 - Tel. 04xx 999999 - Fax 04xx 999999"]]></defaultValueExpression>
@@ -95,26 +95,26 @@ Order by anagrafica.cognomeRagione, anagrafica.nominativo, grad.punteggioTotale 
 	</background>
 	<title>
 		<band height="743" splitType="Immediate">
-			<image scaleImage="FillFrame" hAlign="Center">
-				<reportElement x="225" y="0" width="105" height="64" uuid="4c91eeca-f3f6-4458-a347-849cf6d7bf58"/>
+			<image scaleImage="RetainShape" hAlign="Center">
+				<reportElement x="225" y="0" width="105" height="75" uuid="4c91eeca-f3f6-4458-a347-849cf6d7bf58"/>
 				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="false">
-				<reportElement x="1" y="75" width="554" height="20" uuid="8511912c-b657-48dd-9b11-735087527ab6"/>
+				<reportElement x="1" y="92" width="554" height="20" uuid="8511912c-b657-48dd-9b11-735087527ab6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{INTESTAZIONE1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="95" width="554" height="15" uuid="3840c8f9-d667-4720-9676-d42ad23c9e4a"/>
+				<reportElement x="1" y="112" width="554" height="15" uuid="3840c8f9-d667-4720-9676-d42ad23c9e4a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{INTESTAZIONE2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="110" width="554" height="15" uuid="470eb8d3-99e6-4304-977e-6b0edbd085ed"/>
+				<reportElement x="1" y="127" width="554" height="15" uuid="470eb8d3-99e6-4304-977e-6b0edbd085ed"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
@@ -231,10 +231,6 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 	</title>
 	<pageHeader>
 		<band height="23">
-			<image scaleImage="FillFrame" hAlign="Center">
-				<reportElement x="10" y="1" width="33" height="20" uuid="f1c9f7ad-f28a-4523-94ad-9e6bbb877b93"/>
-				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
-			</image>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="0" y="0" width="555" height="17" uuid="1ad6422f-eece-48c7-a116-082efde51ac8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -400,16 +396,23 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 	<pageFooter>
 		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="430" y="0" width="125" height="15" uuid="8e4f1f6d-0577-4c41-9c4d-9a55e8a4d31b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="430" y="0" width="125" height="18" uuid="8e4f1f6d-0577-4c41-9c4d-9a55e8a4d31b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Pagina "+$V{PagGrad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pagina " + ($V{PAGE_NUMBER}-1) + " di " + ($V{PAGE_NUMBER}-1)]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="100" height="18" uuid="452f54d9-0e06-4fd9-a38d-e8a616b18dba"/>
+				<reportElement x="0" y="0" width="130" height="18" uuid="452f54d9-0e06-4fd9-a38d-e8a616b18dba"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$P{FOOTERSTAMPA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="0" width="280" height="18" uuid="00f718e6-3548-4531-b7a3-3ba9cf248c8a"/>
+				<textElement textAlignment="Center">
+					<font size="8" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{ReportN}+" "+$R{ReportV}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
