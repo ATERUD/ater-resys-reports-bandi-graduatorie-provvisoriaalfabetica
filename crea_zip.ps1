@@ -8,5 +8,10 @@ Write-Host $outputFileName
 
 $quotedPath = '"' + $currentPath + '"'
 
+$tempFile = [System.IO.Path]::GetTempPath() + [System.IO.Path]::GetRandomFileName()
+
 Add-Type -Assembly System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::CreateFromDirectory($currentPath, $outputFileName)
+
+[System.IO.Compression.ZipFile]::CreateFromDirectory($currentPath, $tempFile)
+
+Move-Item $tempFile $outputFileName
