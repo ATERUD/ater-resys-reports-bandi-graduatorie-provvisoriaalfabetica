@@ -1,8 +1,7 @@
-﻿$AppProps = convertfrom-stringdata (get-content ./ReportVersion.properties -raw)
+﻿# Recupera Nome report e versione dal file ReportVersion.properties
+$AppProps = convertfrom-stringdata (get-content ./ReportVersion.properties -raw)
 $currentPath = $((get-Item -Path ".\").FullName)
 $outputFileName = $currentPath + '\' + $AppProps.ReportN + " " + $appProps.ReportV + '.zip'
-
-$quotedPath = '"' + $currentPath + '"'
 
 # Crea una cartella temporanea
 $parent = [System.IO.Path]::GetTempPath()
@@ -10,7 +9,7 @@ $name = [System.IO.Path]::GetRandomFileName()
 $tempDirectory = New-Item -ItemType Directory -Path (Join-Path $parent $name)
 
 # Copia i file da mettere nello zip nella cartella temporanea
-Get-ChildItem $currentPath -Include "*.jasper", "*.jrxml", "*.properties"  -Recurse | Select -ExpandProperty FullName | Copy-Item -Destination $tempDirectory
+Get-ChildItem $currentPath -Include "*.jasper", "*.jrxml", "*.properties" -Recurse | Select -ExpandProperty FullName | Copy-Item -Destination $tempDirectory
 
 # Crea zip con il contenuto della cartella (in una cartella temporanea)
 $tempFile = [System.IO.Path]::GetTempPath() + [System.IO.Path]::GetRandomFileName()
