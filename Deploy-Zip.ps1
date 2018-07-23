@@ -1,7 +1,11 @@
-﻿# Recupera Nome report e versione dal file ReportVersion.properties
-$AppProps = convertfrom-stringdata (get-content ./ReportVersion.properties -raw)
+﻿# Recupera Nome report e versione dal file Report.properties
+$AppProps = convertfrom-stringdata (get-content ./Report.properties -raw)
+if ([string]::IsNullOrEmpty($AppProps.ReportName) -or [string]::IsNullOrEmpty($AppProps.ReportVersion)) {
+    Write-Host "File ./Report.properties mancante."
+    exit(-1)
+}
 $currentPath = $((get-Item -Path ".\").FullName)
-$outputFileName = $currentPath + '\' + $AppProps.ReportN + " " + $appProps.ReportV + '.zip'
+$outputFileName = $currentPath + '\' + $AppProps.ReportName + " " + $appProps.ReportVersion + '.zip'
 
 # Crea una cartella temporanea
 $parent = [System.IO.Path]::GetTempPath()

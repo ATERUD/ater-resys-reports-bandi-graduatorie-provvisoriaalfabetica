@@ -17,7 +17,7 @@
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="LOGO" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["minilogo.png"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["logo.png"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE1" class="java.lang.String">
 		<defaultValueExpression><![CDATA["AZIENDA TERRITORIALE PER L’EDILIZIA RESIDENZIALE ...... ....... ....... ......."]]></defaultValueExpression>
@@ -28,10 +28,10 @@
 	<parameter name="INTESTAZIONE3" class="java.lang.String">
 		<defaultValueExpression><![CDATA["e-mail: info@aterfvg.it - web: www.aterfvg.it"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="IDBANDO" class="java.lang.Double">
+	<parameter name="IDBANDO" class="java.lang.Double" evaluationTime="Early">
 		<defaultValueExpression><![CDATA[DOUBLE_VALUE("2.0")]]></defaultValueExpression>
 	</parameter>
-	<parameter name="IDGRADUATORIA" class="java.lang.Double">
+	<parameter name="IDGRADUATORIA" class="java.lang.Double" evaluationTime="Early">
 		<defaultValueExpression><![CDATA[DOUBLE_VALUE("1.0")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="INTESTAZIONE4" class="java.lang.String">
@@ -95,31 +95,6 @@ Order by anagrafica.cognomeRagione, anagrafica.nominativo, grad.punteggioTotale 
 	</background>
 	<title>
 		<band height="743" splitType="Immediate">
-			<image scaleImage="RetainShape" hAlign="Center">
-				<reportElement x="225" y="0" width="105" height="75" uuid="4c91eeca-f3f6-4458-a347-849cf6d7bf58"/>
-				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
-			</image>
-			<textField isBlankWhenNull="false">
-				<reportElement x="1" y="92" width="554" height="20" uuid="8511912c-b657-48dd-9b11-735087527ab6"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{INTESTAZIONE1}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="112" width="554" height="15" uuid="3840c8f9-d667-4720-9676-d42ad23c9e4a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{INTESTAZIONE2}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="1" y="127" width="554" height="15" uuid="470eb8d3-99e6-4304-977e-6b0edbd085ed"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{INTESTAZIONE3}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="1" y="215" width="553" height="18" uuid="9ce792e4-7d1b-48e0-ba88-b972edb4101a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -209,13 +184,6 @@ Order by anagrafica.cognomeRagione, anagrafica.nominativo, grad.punteggioTotale 
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subCommissione.jasper"]]></subreportExpression>
 			</subreport>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="1" y="657" width="554" height="18" uuid="6b808a7f-db15-4ed7-887d-5611b7f16724"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[( $F{dataPubblicazioneGrad} == null ? "" : $P{INTESTAZIONE4} + ",  " + DateFormat.getDateInstance(DateFormat.LONG).format($F{dataPubblicazioneGrad}) )]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="1" y="385" width="554" height="265" uuid="c7cedada-a971-4d64-8192-fcd99aef0d16"/>
 				<textElement textAlignment="Justified" markup="styled">
@@ -227,6 +195,38 @@ I termini minimi di pubblicazione previsti ai fini di legittimità sono esclusiv
 A parità di punteggio, le domande sono state inserite in graduatoria in ordine alfabetico.
 Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecuzione emanato con D.P.Reg. n. 0208/Pres. del 26 ottobre 2016, al fine di verificare la sussistenza dei requisiti soggettivi e delle altre condizioni previste dal bando di concorso, l’ATER procede, anche a seguito della pubblicazione della presente graduatoria, ad idonei controlli sulla veridicità delle dichiarazioni sottoscritte dai richiedenti e delle documentazioni presentate dagli stessi. <u>La falsità delle dichiarazioni e documentazioni comporterà l'automatica esclusione dalla graduatoria e potrà essere perseguita ai sensi di legge.</u>]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="110" width="554" height="15" uuid="449d7dc6-c4e3-4061-80c4-09595abd8c6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INTESTAZIONE3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="1" y="75" width="554" height="20" uuid="a8476019-9b3a-4fd6-9cab-257ed00c88b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INTESTAZIONE1}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center">
+				<reportElement x="225" y="0" width="105" height="64" uuid="35b13014-f709-4d02-8c6c-a951b516f760"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="95" width="554" height="15" uuid="87805ab9-cca0-40d5-b728-f678b52cf67b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INTESTAZIONE2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="1" y="657" width="554" height="18" uuid="a8318673-e593-4062-9a4c-bd47513064c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{dataPubblicazioneGrad} == null ? "" : $P{INTESTAZIONE4} + ",  " + DateFormat.getDateInstance(DateFormat.LONG).format($F{dataPubblicazioneGrad}) )]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -240,6 +240,10 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 ( $F{annoBando} == null ? "" : " / " + $F{annoBando} ) +
 ( $F{dataPubblicazione} == null ? "" : " del " + DateFormat.getDateInstance(DateFormat.LONG).format($F{dataPubblicazione}) + " - GRADUATORIA PROVVISORIA")]]></textFieldExpression>
 			</textField>
+			<image scaleImage="RetainShape" hAlign="Center">
+				<reportElement x="10" y="1" width="33" height="20" uuid="8f533843-dcb0-4b49-b327-6b52bbc0bd6b"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -396,23 +400,23 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 	<pageFooter>
 		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="430" y="0" width="125" height="18" uuid="8e4f1f6d-0577-4c41-9c4d-9a55e8a4d31b"/>
+				<reportElement x="0" y="0" width="130" height="18" uuid="e76803be-f6e7-4d30-a947-57c923d3b8ef"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{FOOTERSTAMPA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="125" height="18" uuid="02a12096-c8e2-4efb-bd39-85a17b2fa89a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Pagina " + ($V{PAGE_NUMBER}-1) + " di " + ($V{PAGE_NUMBER}-1)]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="130" height="18" uuid="452f54d9-0e06-4fd9-a38d-e8a616b18dba"/>
-				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$P{FOOTERSTAMPA}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="140" y="0" width="280" height="18" uuid="00f718e6-3548-4531-b7a3-3ba9cf248c8a"/>
+				<reportElement x="140" y="0" width="280" height="18" uuid="500c6b2b-81d4-438c-ba10-b24b937d30e5"/>
 				<textElement textAlignment="Center">
 					<font size="8" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$R{ReportN}+" "+$R{ReportV}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{ReportName}+" "+$R{ReportVersion}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
