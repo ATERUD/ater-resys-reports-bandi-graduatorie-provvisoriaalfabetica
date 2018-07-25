@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final utlizzo versione della libreria JasperReports6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAlloggi" language="groovy" pageWidth="595" pageHeight="841" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="ReportVersion" uuid="2cfa5ad0-b19b-423e-81bc-f03caca441d1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAlloggi" language="groovy" pageWidth="595" pageHeight="841" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="Report" uuid="2cfa5ad0-b19b-423e-81bc-f03caca441d1">
 	<property name="ireport.zoom" value="1.3660269107301415"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="172"/>
@@ -87,9 +87,6 @@ Order by anagrafica.cognomeRagione, anagrafica.nominativo, grad.punteggioTotale 
 	<field name="dataPubblicazione" class="java.util.Date"/>
 	<field name="oggetto" class="java.lang.String"/>
 	<field name="dataPubblicazioneGrad" class="java.sql.Date"/>
-	<variable name="PagGrad" class="java.lang.Integer">
-		<variableExpression><![CDATA[$V{PAGE_NUMBER} - 1]]></variableExpression>
-	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -400,23 +397,26 @@ Nel rispetto di quanto previsto dall’art. 7, comma 6, del Regolamento di esecu
 	<pageFooter>
 		<band height="18" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="130" height="18" uuid="e76803be-f6e7-4d30-a947-57c923d3b8ef"/>
+				<reportElement x="140" y="0" width="280" height="18" uuid="18356363-31c1-495c-9007-71efd7347dd5"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{ReportName}+" "+$R{ReportVersion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="130" height="18" uuid="88e11750-80d9-4e90-ba58-367e9460d25e"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$P{FOOTERSTAMPA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="430" y="0" width="125" height="18" uuid="02a12096-c8e2-4efb-bd39-85a17b2fa89a"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Pagina " + ($V{PAGE_NUMBER}-1) + " di " + ($V{PAGE_NUMBER}-1)]]></textFieldExpression>
+				<reportElement x="420" y="0" width="65" height="18" uuid="c8b4db12-fe09-49a6-bd3a-62edfe83e569"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina " + ($V{PAGE_NUMBER}-1)]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="140" y="0" width="280" height="18" uuid="500c6b2b-81d4-438c-ba10-b24b937d30e5"/>
-				<textElement textAlignment="Center">
-					<font size="8" isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{ReportName}+" "+$R{ReportVersion}]]></textFieldExpression>
+			<textField evaluationTime="Report">
+				<reportElement x="485" y="0" width="69" height="18" uuid="1c0f6eaf-35d0-4082-bf55-007c877cf2c4"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" di " + ($V{PAGE_NUMBER}-1)]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
