@@ -13,11 +13,8 @@
     Deploy-Zip.ps1 -DeployPath c:\temp 
 #>
 
-# A causa di un bug nell'installazione di PowerShell 3.0, lo script non funziona quando lanciato da explorer
-
-#param([Parameter(Mandatory=$false)][string]$DeployPath = '.\') 
-
-$DeployPath = '.\'
+[CmdletBinding()]
+param([Parameter(Mandatory=$false)][string]$DeployPath = '.\') 
 
 $currentPath = $((get-Item -Path '.\').FullName)
 
