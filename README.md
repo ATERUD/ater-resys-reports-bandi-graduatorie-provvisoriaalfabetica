@@ -1,6 +1,6 @@
 # ater-resys-reports-bandi-graduatorie-provvisoriaalfabetica
 
-Nome report: Graduatoria Provvisoria ordine alfabetico V.1.0.0
+Nome report: Graduatoria Provvisoria ordine alfabetico
 
 Il report deve essere caricato in Bandi - Graduatoria Bando.
 
