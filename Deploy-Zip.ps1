@@ -32,17 +32,24 @@ $fullDeployFileName = join-Path $fullDeployPath $zipName
 # Crea una cartella temporanea
 $parent = [System.IO.Path]::GetTempPath()
 $name = [System.IO.Path]::GetRandomFileName()
+Write-Verbose 'Creazione di una directory temporanea...'
 $tempDirectory = New-Item -ItemType Directory -Path (Join-Path $parent $name) -ErrorAction stop
+Write-Verbose ('Directory temporanea creata: ' + $tempDirectory)
 try {
+    Write-Verbose "Elenco dei file da inserire nell'archivio ZIP:"
+
     # Copia i file da mettere nello zip nella cartella temporanea
-    Get-ChildItem $currentPath -Include "*.jasper", "*.jrxml", "*.properties" -Recurse | Select -ExpandProperty FullName | Copy-Item -Destination $tempDirectory
+    Get-ChildItem $currentPath -Include "*.jasper", "*.jrxml", "*.properties" -Recurse | Select -ExpandProperty FullName | foreach-Object { Write-Verbose $_ ; Copy-Item $_ -Destination $tempDirectory }
 
     # Crea file zip temporaneo in una cartella temporanea con il contenuto della cartella creata prima
+    Write-Verbose "Creazione dell'archivio ZIP..."
     $tempFile = [System.IO.Path]::GetTempPath() + [System.IO.Path]::GetRandomFileName()
     Add-Type -Assembly System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::CreateFromDirectory($tempDirectory, $tempFile)
+    Write-Verbose ("Archivio ZIP creato come " + $tempFile)
 
     # Sposta il file zip nella cartella corrente
+    Write-Verbose ("Spostamento dell'archivio ZIP da " + $tempFile + " a " + $fullDeployFileName + "...")
     Move-Item $tempFile $fullDeployFileName -ErrorAction stop
     write-host $zipName" creato in "$fullDeployPath
 } catch {
@@ -51,4 +58,6 @@ try {
 }
 
 # Cancella la cartella temporanea
+Write-Verbose ('Rimozione directory temporanea ' + $tempDirectory + '...')
 Remove-Item -Recurse $tempDirectory
+Write-Verbose 'Directory temporanea rimossa'
