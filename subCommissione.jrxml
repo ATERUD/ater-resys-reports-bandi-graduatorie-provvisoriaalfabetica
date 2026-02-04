@@ -12,6 +12,7 @@
 from MembriCommissione m, Soggetto s, TipoComponenteCommissione t
 where m.idSoggetto = s.idSoggetto
   and m.idTipoComponente = t.codice
+  and (m.dataRevoca is null or current_date < m.dataRevoca)
   and m.id.idBando = $P{IDBANDO}
   and t.descrizione like $P{TIPO}]]>
 	</queryString>
