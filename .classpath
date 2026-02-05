@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="R:/Utils/ReSys/configurations/Jaspersoft Studio/Hibernate/mappatureReSys.jar"/>
+	<classpathentry exported="true" kind="lib" path="R:/Utils/ReSys/configurations/Jaspersoft Studio/Hibernate/postgresql-42.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/TIBCO/Jaspersoft Studio-6.13.0/plugins/com.jaspersoft.studio.hibernate3_3.3.2.GA_01.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
